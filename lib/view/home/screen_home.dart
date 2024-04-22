@@ -6,14 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:intl/intl.dart';
 import 'package:weather_app/bloc/weather_boc_bloc.dart';
 
 import 'package:weather_app/constrains/colors.dart';
 import 'package:weather_app/constrains/image_selector.dart';
+import 'package:weather_app/view/home/animation.dart';
 
 class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
+  
+   ScreenHome({super.key, });
+    final greeting = getGreeting();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class ScreenHome extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+       
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.dark
         ),
@@ -92,15 +97,15 @@ class ScreenHome extends StatelessWidget {
                               ),
                               ),
                               kheight8,
-                            const   Text('Good Morning',
-                              style: TextStyle(
+                             Text(greeting,
+                              style: const TextStyle(
                                 color: kwhiteColor,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold
                               ),
                               ),
                               // Image.asset('assets/1.png'),
-                               getWeatherIcon(state.weather.weatherConditionCode!),
+                               AnimatedGrowShrinkContainer(child: getWeatherIcon(state.weather.weatherConditionCode!)),
                                Center(
                                   child: Text('${state.weather.temperature!.celsius!.round()}°C',
                                   style:const TextStyle(

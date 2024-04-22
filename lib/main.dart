@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         if(snap.hasData){
           return BlocProvider<WeatherBocBloc>(
         create: (context) =>WeatherBocBloc()..add(FetchWeather(snap.data as Position)),
-        child:const ScreenHome(),
+        child: ScreenHome(),
       );
       
         }else{
